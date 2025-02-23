@@ -1,106 +1,119 @@
 # Kafka-Python-Demo
 
-A simple demo showcasing how to use **Kafka** with **Python** and **KRaft (Kafka Raft Metadata Mode)** to produce and consume real-time temperature data.
+A simple Python demo showcasing the use of **Kafka** with **KRaft mode** using **Poetry** for dependency management. This project contains a producer that sends real-time temperature data and a consumer that listens for messages.
+
+---
 
 ## 🚀 Features
-- **Producer**: Publishes temperature data to a Kafka topic.
-- **Consumer**: Subscribes to a Kafka topic and prints real-time temperature data.
-- **Command-line arguments**: Specify topics and user groups dynamically.
+- **Real-time data streaming** with Kafka
+- **Command-line interface** to specify topic and consumer group
+- **Dockerized Kafka setup** using the latest version (KRaft mode, no ZooKeeper needed)
+- **Poetry** for managing Python dependencies
 
 ---
 
-## 📦 Prerequisites
-- **Docker** installed on your machine.
-- **Python 3.7+** installed.
-- Install Python dependencies:
-  ```bash
-  pip install kafka-python
-  ```
+## 📝 Prerequisites
+- [Docker](https://docs.docker.com/get-docker/) installed and running.
+- [Poetry](https://python-poetry.org/docs/#installation) installed.
+- Python 3.8+ installed.
 
 ---
 
-## 🐳 Setting Up Kafka with Docker
+## 🐋 Kafka Setup (Docker)
+1. **Pull the Kafka Docker image:**
+   ```bash
+   docker pull apache/kafka:3.9.0
+   ```
+2. **Run the Kafka container:**
+   ```bash
+   docker run -p 9092:9092 apache/kafka:3.9.0
+   ```
+---
 
-### 1. Pull the Kafka Docker image:
-```bash
-docker pull apache/kafka:3.9.0
-```
+## 🧰 Project Setup
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/Kafka-python-Demo.git
+   cd Kafka-python-Demo
+   ```
 
-### 2. Run Kafka with KRaft mode:
-```bash
-docker run -d \
-  --name kafka-container \
-  -p 9092:9092 \
-  apache/kafka:3.9.0
-```
+2. **Install dependencies with Poetry:**
+   ```bash
+   poetry install
+   ```
 
-This starts Kafka in **KRaft mode** without requiring Zookeeper.
-
-✅ **Kafka Broker Running on:** `localhost:9092`
+3. **Activate the Poetry shell:**
+   ```bash
+   poetry shell
+   ```
 
 ---
 
-## 📝 Usage
+## 📦 Producer Usage
+The producer sends real-time temperature data to a Kafka topic.
 
-### 1. **Producer**: Send temperature data to a topic.
 ```bash
-python producer.py -t <topic_name>
+python producer.py -t <topic-name>
 ```
 
-**Example:**
+🔔 **Example:**
 ```bash
 python producer.py -t temp-topic
 ```
-👉 Enter the location and temperature when prompted. Data is sent to Kafka in real-time.
+You will be prompted to enter the location and temperature repeatedly.
 
 ---
 
-### 2. **Consumer**: Read temperature data from a topic.
+## 📥 Consumer Usage
+The consumer listens to messages from a Kafka topic.
+
 ```bash
-python consumer.py -t <topic_name> -u <user_group>
+python consumer.py -t <topic-name> -u <consumer-group>
 ```
 
-**Example:**
+🔔 **Example:**
 ```bash
-python consumer.py -t temp-topic -u temp-group
+python consumer.py -t temp-topic -u temperature-consumer-group
 ```
-👉 The consumer listens for new messages and prints them to the console.
+
+💡 **Output:**
+```
+Start consuming on topic: temp-topic, usergroup: temperature-consumer-group
+New Message: {'loc': 'New York', 'value': '25'}
+```
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Project Structure
 ```
 Kafka-python-Demo/
-├── producer.py   # Producer script to publish temperature data
-├── consumer.py   # Consumer script to consume temperature data
-└── README.md     # Project documentation
+├── consumer.py    # Kafka consumer script
+├── producer.py    # Kafka producer script
+├── pyproject.toml # Poetry dependency file
+├── README.md      # Project documentation
+└── .gitignore     # Git ignored files
 ```
 
 ---
 
 ## 🤝 Contributing
-Contributions are welcome! Feel free to fork this repo, submit issues, or make pull requests.
+Contributions are welcome! 🚀
 
-### Steps to contribute:
-1. Fork the repo 📌
-2. Create a new branch (`git checkout -b feature-yourFeature`) 🌱
-3. Commit your changes (`git commit -m 'Add your feature'`) 💬
-4. Push to the branch (`git push origin feature-yourFeature`) 🚀
-5. Create a pull request 🔥
+1. Fork the repository.
+2. Create your feature branch: `git checkout -b feature/your-feature`.
+3. Commit your changes: `git commit -m 'Add your feature'`.
+4. Push to the branch: `git push origin feature/your-feature`.
+5. Open a pull request.
 
 ---
 
-## 🛡️ License
+## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
 ## 🙌 Acknowledgements
 - [Apache Kafka](https://kafka.apache.org/)
-- [kafka-python](https://github.com/dpkp/kafka-python)
-- Docker for seamless containerization 🐳
-
----
-
-## 🚀 Happy Coding & Streaming Data! 📊📡
+- [Poetry](https://python-poetry.org/)
+- [Docker](https://www.docker.com/)
 
