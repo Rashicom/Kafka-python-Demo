@@ -107,11 +107,6 @@ Contributions are welcome! 🚀
 
 ---
 
-## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
 ## 🙌 Acknowledgements
 - [Apache Kafka](https://kafka.apache.org/)
 - [Poetry](https://python-poetry.org/)
