@@ -7,6 +7,10 @@ parser.add_argument("-t", "--topic", type=str, required=True, help="Topic to con
 parser.add_argument("-u", "--usergroup", type=str, required=True, help="usergroup")
 arg = parser.parse_args()
 
+
+def process_message(message):
+    pass
+
 # kafka consumer
 consumer = KafkaConsumer(
     arg.topic,
